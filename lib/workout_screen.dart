@@ -129,6 +129,17 @@ class WorkoutRoutineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent, // Remove the background color here
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xff0052D4), Color(0xff4364F7), Color(0xff6FB1FC)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0.0, 0.5, 1], // Adjust the stops as per your preference
+            ),
+          ),
+        ),
         title: Text(title),
       ),
       body: _buildWorkoutContent(),

@@ -75,13 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
       switch (index) {
         case 0:
           title = 'Workout List';
-          break;
+          Navigator.pop(context);
         case 1:
           title = 'About';
-          break;
+          Navigator.pop(context);
         case 2:
           title = 'Questions';
-          break;
+          Navigator.pop(context);
+
         default:
           title = 'Workout Routine'; // Default title if needed
       }
@@ -130,8 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 // Update the state of the app
                 _onItemTapped(0);
-                // Then close the drawer
-                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -140,8 +139,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 // Update the state of the app
                 _onItemTapped(1);
-                // Then close the drawer
-                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -150,8 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 // Update the state of the app
                 _onItemTapped(2);
-                // Then close the drawer
-                Navigator.pop(context);
               },
             ),
           ],
