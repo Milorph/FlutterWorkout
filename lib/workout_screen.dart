@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/yoga.dart';
+import 'book_search_screen.dart';
 
 class WorkoutScreen extends StatelessWidget {
   const WorkoutScreen({Key? key}) : super(key: key);
@@ -42,6 +43,12 @@ class WorkoutScreen extends StatelessWidget {
                 'Yoga',
                 '/yoga',
                 'images/yoga.png',
+              ),
+              _buildWorkoutButton(
+                context,
+                'Book',
+                '/book_search',
+                'images/grow.png',
               ),
             ],
           ),
@@ -161,6 +168,8 @@ class WorkoutRoutineScreen extends StatelessWidget {
       case 'Yoga':
         content = const BuildYogaContent();
         break;
+      case 'Book':
+        content = const BookSearchScreen();
       default:
         content = const Center(
           child: Text('Workout content not available.'),

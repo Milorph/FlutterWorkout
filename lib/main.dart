@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'workout_screen.dart';
 import 'about_widget.dart';
 import 'question_widget.dart';
+import 'book_search_screen.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  // Step 2
+  WidgetsFlutterBinding.ensureInitialized();
+  // Step 3
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((value) => runApp(const MyApp()));
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -34,7 +45,7 @@ class MyApp extends StatelessWidget {
               workoutType: 'Yoga',
               title: 'Yoga Workout',
             ),
-        // Add other routes if needed
+        '/book_search': (context) => const BookSearchScreen(),
       },
       home: const MyHomePage(title: appTitle),
     );
@@ -58,7 +69,7 @@ class MyHomePage extends StatefulWidget {
   void navigateToScreen(BuildContext context, String title, int index) {
     Navigator.push(
       context,
-      MaterialPageRoute(
+      CustomPageRoute(
         builder: (context) => _widgetOptions[index](title),
       ),
     );
@@ -152,6 +163,39 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomPageRoute<T> extends PageRoute<T> {
+  final WidgetBuilder builder;
+
+  CustomPageRoute({required this.builder});
+
+  @override
+  Color? get barrierColor => null;
+
+  @override
+  String? get barrierLabel => null;
+
+  @override
+  bool get maintainState => true;
+
+  @override
+  bool get opaque => false;
+
+  @override
+  bool get barrierDismissible => false;
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 150);
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return FadeTransition(
+      opacity: animation,
+      child: builder(context),
     );
   }
 }
